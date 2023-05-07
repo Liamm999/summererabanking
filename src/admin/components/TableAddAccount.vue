@@ -1,16 +1,20 @@
 <template>
-  <Loading :is-hidden="checkHidden" />
+  <!-- <Loading :is-hidden="checkHidden" /> -->
   <div class="w-2/3 border border-white rounded-2xl max-lg:w-full max-lg:mx-3">
-    <div class="heaeding flex flex-col mt-3">
-      <!--Title of the screen-->
+    <div class="flex flex-row pl-2 item-center ml-3 mt-3">
+      <button @click="handleCancel">
+        <font-awesome-icon
+          icon="fa-solid fa-arrow-left"
+          style="color: #ffffff"
+          class="text-center"
+        />
+      </button>
       <span class="title text-xl ml-5 font-semibold">ADD ACCOUNT</span>
-      <hr class="mt-3 w-full" />
     </div>
+    <hr class="mt-3 w-full" />
+
     <div class="max-lg:hidden">
-      <form
-        class="text-white flex justify-center"
-        v-on:submit.prevent="submitForm"
-      >
+      <form class="text-white flex justify-center">
         <div
           class="login w-5/6 p-3 pt-8 pb-5 flex flex-col items-center h-auto mt-1"
         >
@@ -93,13 +97,12 @@
           <!--Submit button-->
           <div class="w-3/5 flex justify-evenly items-center mt-6">
             <button
-              type="submit"
               class="bg-yellow-btn hover:bg-orange-500 mt-3 py-2 px-10 rounded-lg text-white"
+              @click.prevent="submitForm"
             >
               Save
             </button>
             <button
-              type="submit"
               class="bg-red-cancle hover:bg-red-800 mt-3 py-2 px-9 rounded-lg text-white"
               @click="handleCancel"
             >
@@ -111,7 +114,7 @@
     </div>
 
     <div class="hideForm w-full pl-8 pt-3 lg:hidden">
-      <form class="text-black" v-on:submit.prevent="submitForm">
+      <form class="form text-black">
         <div class="login flex flex-col items-center h-72 mt-2">
           <!--Input for username-->
           <div class="flex flex-col w-3/4">
@@ -202,13 +205,12 @@
 
           <div class="w-full flex justify-around items-center mt-3">
             <button
-              type="submit"
               class="bg-yellow-btn hover:bg-orange-500 py-2 px-5 rounded-lg text-white text-sm"
+              @click.prevent="submitForm"
             >
               Save
             </button>
             <button
-              type="submit"
               class="bg-red-cancle hover:bg-red-800 py-2 px-5 rounded-lg text-white text-sm"
               @click="handleCancel"
             >
@@ -222,19 +224,18 @@
 </template>
 
 <script>
-import Loading from "@/shared/components/Loading.vue"
 import axios from "axios"
 
 export default {
   name: "Table add account",
   data() {
     return {
-      checkHidden: true,
       username: "",
       name: "",
       password: "",
       dob: "",
       msg: [],
+      customers: [],
     }
   },
   watch: {
@@ -275,18 +276,19 @@ export default {
         password: this.password,
         dob: this.dob,
       }
-      this.checkHidden = false
       await axios
         .post("user/signup", form)
         .then((response) => {
           console.log(response.data)
+          this.customers = response.data
+          alert("success!")
           this.$router.push("/admin/dashboard")
-          this.checkHidden = true
+          // this.checkHidden = true
         })
         .catch((err) => {
           console.log("error:" + err.message)
-          this.checkHidden = true
           alert(err.response.data.message)
+          location.reload()
         })
     },
     handleCancel() {
@@ -321,7 +323,6 @@ export default {
       }
     },
   },
-  components: { Loading },
 }
 </script>
 
@@ -334,7 +335,7 @@ export default {
   margin: 0 2%;
 }
 
-.hideForm form {
+.hideForm .form {
   width: 50vw;
   height: auto;
   padding: 2%;
@@ -348,7 +349,7 @@ export default {
     margin: 0;
     padding: 0;
   }
-  .hideForm form {
+  .hideForm .form {
     width: auto;
     margin: 4%;
   }
@@ -376,7 +377,7 @@ export default {
     margin: 0;
     padding: 0;
   }
-  .hideForm form {
+  .hideForm .form {
     width: 100%;
     margin: 4%;
   }

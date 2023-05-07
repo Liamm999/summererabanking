@@ -62,6 +62,7 @@ export default {
             .delete(`${this.url}/${event.target.id}`, { withCredentials: true })
             .then((res) => {
               console.log(res.data)
+              location.reload()
             })
         }
 
@@ -70,8 +71,8 @@ export default {
         // } else if (this.$route.path != "/admin/dashboard") {
         //   this.$router.push("/admin/dashboard")
         // } else {
+        //   window.location.reload()
         // }
-        window.location.reload()
         console.log("có saving")
       } else if (event.target.value == "No") {
         console.log("No")
@@ -88,7 +89,7 @@ export default {
             alert(
               "Saving: Cant't delete. This account is having a saving or a loan"
             )
-            window.location.reload()
+            location.reload()
           }
         })
         .catch((err) => {
@@ -111,8 +112,9 @@ export default {
             alert(
               "Loan: Cant't delete. This account is having a saving or a loan"
             )
-            window.location.reload()
+            location.reload()
           }
+
           console.log(this.userLoan)
         })
         .catch((err) => {

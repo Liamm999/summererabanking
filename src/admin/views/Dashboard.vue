@@ -232,7 +232,7 @@ import LeftNavbar from "../components/Navbar/LeftNavbar.vue"
 import Footer from "../components/Footer.vue"
 import Account from "./Account.vue"
 import Breadcrum from "../components/Breadcrum.vue"
-import Saving from "./SavingAndLoans.vue"
+import SavingandLoans from "./SavingAndLoans.vue"
 import Transaction from "./Transaction.vue"
 export default {
   name: "dashboard",
@@ -242,13 +242,13 @@ export default {
     Footer,
     Account,
     Breadcrum,
-    Saving,
+    SavingandLoans,
     Transaction,
     SlideInOut,
   },
   data() {
     return {
-      tabContents: ["Account", "Transaction", "Saving"],
+      tabContents: ["Account", "Transaction", "SavingandLoans"],
       component: "Account",
       tasks: false,
       hiddenNav: false,
