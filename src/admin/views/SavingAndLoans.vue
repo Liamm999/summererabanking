@@ -140,9 +140,9 @@ export default {
       loans: [],
     }
   },
-  created() {
-    this.getAllLoans()
-    this.getAllSaving()
+  async mounted() {
+    await this.getAllLoans()
+    await this.getAllSaving()
   },
   methods: {
     handleLoans: function (customer) {
