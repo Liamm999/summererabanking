@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #18122b;
+}
+
+html {
+    scroll-behavior:smooth;
+    @apply text-white
+
+}
+
+html,
+body {
+   margin:0;
+   padding:0;
+}
+
+@layer base {
+    #main {
+        @apply box-border p-0 m-0 text-base font-normal;
+    }
+
+    h1 {
+        @apply text-5xl font-medium;
+    }
+
+    h2 {
+        @apply text-4xl font-medium;
+    }
+
+    h3 {
+        @apply text-3xl font-medium;
+    }
+
+    h4 {
+        @apply text-2xl font-normal;
+    }
+
+    h5 {
+        @apply text-lg font-normal;
+    }
+
+    h6 {
+        @apply text-base font-thin;
+    }
+
+    img {
+        @apply max-w-full h-auto;
+    }
+
+   
+     
+}
+
+@layer components {
+    .text-on-white {
+        color: #635985;
+    }
+
+    .bg-element-purple {
+        background-color: #635985;
+        @apply text-white
+    }
+
+    .element-hover-color {
+        background-color: #18122B;
+    }
+
+             
+    .gradBtn {
+        background-image: linear-gradient(to right, #2b5876 0%, #4e4376  51%, #2b5876  100%);
+        transition: 0.5s;
+        color: white;            
+        box-shadow: 0 0 20px #eee;
+      }
+
+      .gradBtn:hover {
+        background-position: right center; /* change the direction of the change here */    
+        color: #fff;
+        text-decoration: none;
+      }
+}
+/* global */
+::-webkit-scrollbar {
+    @apply w-2 h-2;
+}
+
+::-webkit-scrollbar-thumb {
+    @apply transition rounded-lg bg-slate-300 hover:bg-slate-400 dark:bg-slate-700 hover:dark:bg-slate-600;
+}
+
