@@ -70,8 +70,8 @@ export default {
         // } else if (this.$route.path != "/admin/dashboard") {
         //   this.$router.push("/admin/dashboard")
         // } else {
-        //   window.location.reload()
         // }
+        window.location.reload()
         console.log("có saving")
       } else if (event.target.value == "No") {
         console.log("No")
